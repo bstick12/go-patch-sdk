@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e -o pipefail
+
+[ -z "$DEBUG" ] || set -x
+
+print_help() {
+  echo "Usage: ${BASH_SOURCE[0]} [BOSH_ENV] [DEPLOYMENT_NAME]"
+  echo ""
+  echo "BOSH_ENV is the path to the KuBOSH environment folder."
+  echo "    If there is a creds.yml file in BOSH_ENV directory,"
+  echo "    it will be used fill in the credentials during manifest"
+  echo "    generation. Otherwise, BOSH director will search for the"
+  echo "    credentials in CredHub"
+  echo ""
+  echo "DEPLOYMENT_NAME is the name for your k8s deployment"
+  echo ""
+  echo "A note on manifest customisation:"
+  echo "  - if a <BOSH_ENV>/<DEPLOYMENT_NAME>.yml is present,"
+  echo "    it will be interpreted as a set of go-patch(*) commands"
+  echo "    and applied to the generated manifest."
+  echo "    (*) see https://github.com/cppforlife/go-patch"
+  echo "  - if a <BOSH_ENV>/<DEPLOYMENT_NAME>-vars.yml is present,"
+  echo "    it will be used to override the variables in the"
+  echo "    generated manifest. See $(repo_directory)/manifests/kubo.yml"
+  echo "    to discover which variables are available in the Kubo manifest."
+}
+
+repo_directory() {
+  echo -n "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; pwd)"
+}
+
+main() {
+  if [ $# -ne 2 ]; then
+    print_help
+    exit 1
+  fi
+
+  local bosh_env="${1}"
+  local deployment_name="${2}"
+
+  # shellcheck disable=SC1090
+  . "$(repo_directory)/bin/lib/deploy_utils" > /dev/null
+  generate_manifest "${bosh_env}" "${deployment_name}" "$(repo_directory)/manifests/kubo.yml"
+}
+
+[[ "$0" == "${BASH_SOURCE[0]}" ]] && main "$@"

@@ -1,0 +1,73 @@
+- type: replace
+  path: /variables/name=tls-kubelet/options/common_name
+  value: ((kubernetes_master_host))
+
+- type: replace
+  path: /variables/name=tls-kubelet/options/alternative_names
+  value: [((kubernetes_master_host))]
+
+- type: replace
+  path: /variables/name=tls-kubernetes/options/common_name
+  value: ((kubernetes_master_host))
+
+- type: replace
+  path: /variables/name=tls-kubernetes/options/alternative_names
+  value:
+  - ((cf-tcp-router-name))
+  - ((kubernetes_master_host))
+  - 10.100.200.1
+
+- type: replace
+  path: /instance_groups/name=master/jobs/-
+  value:
+    name: kubernetes-api-route-registrar
+    release: kubo
+    properties:
+      external_kubo_port: ((kubernetes_master_port))
+      cloud_foundry:
+        api_url: ((routing-cf-api-url))
+        uaa_url: ((routing-cf-uaa-url))
+        uaa_client_id: ((routing-cf-client-id))
+        uaa_client_secret: ((routing-cf-client-secret))
+
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: proxy
+    instances: 1
+    networks:
+    - name: ((deployments_network))
+    azs: [z1]
+    jobs:
+    - name: nginx
+      release: kubo
+    - name: flanneld
+      release: kubo
+    - name: kubeconfig
+      release: kubo
+      properties:
+        kubernetes-api-url: "https://((kubernetes_master_host)):((kubernetes_master_port))"
+        kubelet-password: ((kubelet-password))
+        tls:
+          kubernetes: ((tls-kubernetes))
+    - name: kubernetes-proxy
+      release: kubo
+      properties:
+        kubernetes-api-url: "https://((kubernetes_master_host)):((kubernetes_master_port))"
+    - name: route-sync
+      release: kubo
+      properties:
+        cloud_foundry:
+          uaa_url: ((routing-cf-uaa-url))
+          routing_api_url: ((routing-cf-api-url))
+          routing_api_client_id: ((routing-cf-client-id))
+          routing_api_client_secret: ((routing-cf-client-secret))
+          skip_tls_verification: true
+          app_domain: ((routing-cf-app-domain-name))
+        nats:
+          machines: ((routing-cf-nats-internal-ips))
+          port: ((routing-cf-nats-port))
+          user: ((routing-cf-nats-username))
+          password: ((routing-cf-nats-password))
+    stemcell: trusty
+    vm_type: common

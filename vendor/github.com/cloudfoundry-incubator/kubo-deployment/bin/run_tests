@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+export GOPATH=$(cd "$(dirname $BASH_SOURCE[0])"/../; pwd)
+pushd "${GOPATH}/src/kubo-deployment-tests" > /dev/null
+  ginkgo .
+popd > /dev/null

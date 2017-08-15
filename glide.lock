@@ -1,0 +1,30 @@
+hash: 3faad0c8820edbd322addeb89331814b6792e2d98a82798469b64bdbc0b1e115
+updated: 2017-08-15T21:28:13.056431971+01:00
+imports:
+- name: github.com/bmatcuk/doublestar
+  version: dd6a6f0a8cdfaaa88b08cf26cf1bc7d69003ee13
+- name: github.com/charlievieth/fs
+  version: 7dc373669fa10ddf827c37c595dee30a2f001be9
+- name: github.com/cloudfoundry-incubator/kubo-deployment
+  version: 25478b76c50e29478f55ee8c1dc9f46417c288be
+- name: github.com/cloudfoundry/bosh-cli
+  version: 0b6f2bc4bf4d1cb97c667b3d0c96ce8909c7484a
+  subpackages:
+  - director/template
+- name: github.com/cloudfoundry/bosh-utils
+  version: 3116dcc64bb16f5f0c61360f6e93c1d5305eff61
+  subpackages:
+  - errors
+  - logger
+  - system
+- name: github.com/cppforlife/go-patch
+  version: 37a72c69d59809d4d5aa0b2aff033e74b8014390
+  subpackages:
+  - patch
+- name: github.com/pivotal-cf/on-demand-services-sdk
+  version: 81cda5d89ac5d38d54f4d6fe1aadaee8041da185
+  subpackages:
+  - bosh
+- name: gopkg.in/yaml.v2
+  version: eb3733d160e74a9c7e442f435eb3bea458e1d19f
+testImports: []

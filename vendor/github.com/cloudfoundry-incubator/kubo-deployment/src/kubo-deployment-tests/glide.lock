@@ -1,0 +1,53 @@
+hash: 322b732fb2a9f02a3b10cf1bb0f95652b6a9a136a1c8b9e33edc9b6646d9df25
+updated: 2017-05-23T11:48:19.612949687+01:00
+imports:
+- name: github.com/jhvhs/gob-mock
+  version: 4c8dc9acd659b42f88b1aef44762d7f65e809458
+- name: github.com/onsi/ginkgo
+  version: 43e2af1f01ace55adbb6d7d0f30416476db1baae
+  subpackages:
+  - config
+  - extensions/table
+  - internal/codelocation
+  - internal/containernode
+  - internal/failer
+  - internal/leafnodes
+  - internal/remote
+  - internal/spec
+  - internal/specrunner
+  - internal/suite
+  - internal/testingtproxy
+  - internal/writer
+  - reporters
+  - reporters/stenographer
+  - types
+- name: github.com/onsi/gomega
+  version: c90bd38f8da6e92f8b114953db2f0ad7361fb4b4
+  subpackages:
+  - format
+  - gbytes
+  - internal/assertion
+  - internal/asyncassertion
+  - internal/oraclematcher
+  - internal/testingtsupport
+  - matchers
+  - matchers/support/goraph/bipartitegraph
+  - matchers/support/goraph/edge
+  - matchers/support/goraph/node
+  - matchers/support/goraph/util
+  - types
+- name: github.com/progrium/go-basher
+  version: 6a5b35fcdaea1ddfc145720efc903869413629e7
+testImports:
+- name: github.com/kardianos/osext
+  version: ae77be60afb1dcacde03767a8c37337fad28ac14
+- name: github.com/mitchellh/go-homedir
+  version: b8bc1bf767474819792c23f32d8286a45736f1c6
+- name: github.com/tonnerre/golang-text
+  version: 048ed3d792f7104850acbc8cfc01e5a6070f4c04
+- name: golang.org/x/sys
+  version: a408501be4d17ee978c04a618e7a1b22af058c0e
+  subpackages:
+  - unix
+- name: gopkg.in/yaml.v2
+  version: e4d366fc3c7938e2958e662b4258c7a89e1f0e3e
