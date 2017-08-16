@@ -12,68 +12,83 @@ import (
 
 func main() {
 
-	var opDefs []OpDefinition
-
 	inBytes, err := kubo.Asset("kubo.yml")
 	if err != nil {
 		panic(err)
 	}
 
-	opsBytes, err := kubo.Asset("ops-files/gcp-cloud-provider.yml")
-	if err != nil {
-		panic(err)
-	}
-	err = yaml.Unmarshal(opsBytes, &opDefs)
-	if err != nil {
-		panic(err)
+	opsFiles := []string{
+		// Not sure how we would pass the IAAS
+		"ops-files/gcp-cloud-provider.yml",
+		"ops-files/cf-routing.yml",
+		"ops-files/remove-haproxy.yml",
 	}
 
-	ops, err := NewOpsFromDefinitions(opDefs)
-	if err != nil {
-		panic(err)
+	var op []Op
+
+	for _, opFile := range opsFiles {
+		var opDefs []OpDefinition
+		opsBytes, err := kubo.Asset(opFile)
+		if err != nil {
+			panic(err)
+		}
+		err = yaml.Unmarshal(opsBytes, &opDefs)
+		if err != nil {
+			panic(err)
+		}
+
+		tmpOps, err := NewOpsFromDefinitions(opDefs)
+		if err != nil {
+			panic(err)
+		}
+		op = append(op, tmpOps)
+
 	}
 
-	var manifest interface{}
+	var ops = Ops(op)
 
-	err = yaml.Unmarshal(inBytes, &manifest)
-	if err != nil {
-		panic(err)
+	// These would come from the adapter.ServiceProperties
+	staticVariables := template.StaticVariables{
+		"deployment_name":              "deployment_name",
+		"deployments_network":          "kubo-pcf",
+		"kubernetes_master_port":       "8443",
+		"network":                      "network",
+		"project_id":                   "project_id",
+		"stemcell_version":             "3412.11",
+		"cf-tcp-router-name":           "cf-tcp-router-name",
+		"routing-cf-api-url":           "routing-cf-api-url",
+		"routing-cf-app-domain-name":   "routing-cf-app-domain-name",
+		"routing-cf-client-id":         "routing-cf-client-id",
+		"routing-cf-client-secret":     "routing-cf-client-secret",
+		"routing-cf-nats-internal-ips": "routing-cf-nats-internal-ips",
+		"routing-cf-nats-password":     "routing-cf-nats-password",
+		"routing-cf-nats-port":         "routing-cf-nats-port",
+		"routing-cf-nats-username":     "routing-cf-nats-username",
+		"routing-cf-uaa-url":           "routing-cf-uaa-url",
 	}
-
-	manifest, err = ops.Apply(manifest)
-	if err != nil {
-		panic(err)
-	}
-
-	str, err := yaml.Marshal(manifest)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("%s", str)
-
-	var boshManifest bosh.BoshManifest
-	err = yaml.Unmarshal([]byte(str), &boshManifest)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("%+v", boshManifest)
 
 	tpl := template.NewTemplate(inBytes)
-	result, err := tpl.Evaluate(template.StaticVariables{}, ops, template.EvaluateOpts{
-		ExpectAllKeys:     true,
-		ExpectAllVarsUsed: true,
-	})
+	result, err := tpl.Evaluate(
+		staticVariables,
+		ops,
+		template.EvaluateOpts{})
 	if err != nil {
 		panic(err)
 	}
 
-	err = yaml.Unmarshal(result, &manifest)
+	var boshManifest bosh.BoshManifest
+
+	err = yaml.Unmarshal(result, &boshManifest)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("%+v", manifest)
+	bosh, err := yaml.Marshal(boshManifest)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%s\n", string(bosh))
+	fmt.Printf("--------------------------------------------\n")
 
 }
