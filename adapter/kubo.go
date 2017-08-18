@@ -20,7 +20,7 @@
 // vendor/github.com/cloudfoundry-incubator/kubo-deployment/manifests/ops-files/worker-haproxy.yml
 // DO NOT EDIT!
 
-package kubo
+package adapter
 
 import (
 	"bytes"
