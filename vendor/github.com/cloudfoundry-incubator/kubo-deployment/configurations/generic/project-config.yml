@@ -11,18 +11,25 @@ kubernetes_master_port: # Port to use for Kubernetes API
 director_name: # user friendly Director name
 dns_recursor_ip: # DNS IP address for resolving non-BOSH hostnames
 
-stemcell_version: # version of the stemcell used in all Kubo deployments. Quote the version to satisfy YAML parsers
-stemcell_url: # path to a stemcell used in all Kubo deployments
-
 credhub_release_url: https://bosh.io/d/github.com/pivotal-cf/credhub-release?v=1.0.0
 kubo_release_url: https://storage.googleapis.com/kubo-public/kubo-release-latest.tgz
 
-# routing_mode: haproxy
+# Proxy routing mode settings
+# Uncomment this section when using Proxy routing mode
+# routing_mode: proxy
+# kubernetes_master_host: # IP address of the HA Proxy master node
+# kubernetes_master_port: # Port for kubernetes api-server on HA Proxy master node
+# master_haproxy_tcp_frontend_port: # Port that the HA Proxy master will receive traffic on
+# master_haproxy_tcp_backend_port: # Port that the HA Proxy master will forward traffic to
+# worker_haproxy_ip_addresses: # IP address of the HA Proxy worker node
+# worker_haproxy_tcp_frontend_port: # Port that the HA Proxy worker will receive traffic on
+# worker_haproxy_tcp_backend_port: # Port that the HA Proxy worker will forward traffic to
 
 # IaaS routing mode settings
 # Comment this section when using CF routing mode
 routing_mode: iaas
 kubernetes_master_host: # IP address that can be used to reach the Kubernetes API, usually the address of a load balancer
+kubernetes_master_port: 8443 # Kubernetes API server port
 master_target_pool: # target pool that master nodes will be a part of
 worker_target_pool: # target pool that worker nodes will be a part of
 

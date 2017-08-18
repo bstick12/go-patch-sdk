@@ -1,14 +1,14 @@
-hash: 3faad0c8820edbd322addeb89331814b6792e2d98a82798469b64bdbc0b1e115
-updated: 2017-08-15T21:28:13.056431971+01:00
+hash: 0256a3efabf474e1c033ff79ec6bf25ff3563db0dfa587ec17ad4b61ef9efd44
+updated: 2017-08-18T20:45:49.246270285+01:00
 imports:
 - name: github.com/bmatcuk/doublestar
   version: dd6a6f0a8cdfaaa88b08cf26cf1bc7d69003ee13
 - name: github.com/charlievieth/fs
   version: 7dc373669fa10ddf827c37c595dee30a2f001be9
 - name: github.com/cloudfoundry-incubator/kubo-deployment
-  version: 25478b76c50e29478f55ee8c1dc9f46417c288be
+  version: 1dbb3975fd094c2cbb1293ebf3556fd5e85b2df3
 - name: github.com/cloudfoundry/bosh-cli
-  version: 0b6f2bc4bf4d1cb97c667b3d0c96ce8909c7484a
+  version: b6a3c1f44a39ace1e5b507290c218c44b5d6fe35
   subpackages:
   - director/template
 - name: github.com/cloudfoundry/bosh-utils
@@ -18,7 +18,7 @@ imports:
   - logger
   - system
 - name: github.com/cppforlife/go-patch
-  version: 37a72c69d59809d4d5aa0b2aff033e74b8014390
+  version: d9e51bef8eda190cdbac94dddd3c304080774726
   subpackages:
   - patch
 - name: github.com/pivotal-cf/on-demand-services-sdk
