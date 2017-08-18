@@ -6,3 +6,7 @@ import:
 - package: gopkg.in/yaml.v2
 - package: github.com/cloudfoundry-incubator/kubo-deployment
   version: v0.6.0
+- package: github.com/pivotal-cf/on-demand-services-sdk
+  version: v0.17.0
+- package: github.com/onsi/ginkgo
+- package: github.com/onsi/gomega

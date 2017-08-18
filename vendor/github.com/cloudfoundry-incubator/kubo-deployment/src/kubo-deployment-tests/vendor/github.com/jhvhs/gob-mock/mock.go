@@ -44,6 +44,6 @@ func (m *mock) mockBody() string {
 	return mockDefinition
 }
 
-func (m *mock)callThrough() string {
-	return text.Indent("\nif " + m.condition + "; then\n" + callThroughDefinition + "else\n" + mockDefinition + "fi\n", "  ")
+func (m *mock) callThrough() string {
+	return text.Indent("\nif "+m.condition+"; then\n"+callThroughDefinition+"else\n"+mockDefinition+"fi\n", "  ")
 }

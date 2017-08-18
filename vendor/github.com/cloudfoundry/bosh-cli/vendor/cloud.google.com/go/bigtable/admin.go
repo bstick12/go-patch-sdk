@@ -171,13 +171,13 @@ func (ac *AdminClient) DeleteColumnFamily(ctx context.Context, table, family str
 // TableInfo represents information about a table.
 type TableInfo struct {
 	// DEPRECATED - This field is deprecated. Please use FamilyInfos instead.
-	Families []string
+	Families    []string
 	FamilyInfos []FamilyInfo
 }
 
 // FamilyInfo represents information about a column family.
 type FamilyInfo struct {
-	Name string
+	Name     string
 	GCPolicy string
 }
 
