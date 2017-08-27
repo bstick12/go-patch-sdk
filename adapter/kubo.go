@@ -497,24 +497,24 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"kubo.yml":                                     kuboYml,
-	"ops-files/add-http-proxy.yml":                 opsFilesAddHttpProxyYml,
-	"ops-files/add-https-proxy.yml":                opsFilesAddHttpsProxyYml,
-	"ops-files/add-no-proxy.yml":                   opsFilesAddNoProxyYml,
-	"ops-files/aws-cloud-provider.yml":             opsFilesAwsCloudProviderYml,
-	"ops-files/aws-lb-cloud-config.yml":            opsFilesAwsLbCloudConfigYml,
-	"ops-files/aws-lb.yml":                         opsFilesAwsLbYml,
-	"ops-files/cf-routing.yml":                     opsFilesCfRoutingYml,
-	"ops-files/gcp-cloud-provider.yml":             opsFilesGcpCloudProviderYml,
+	"kubo.yml": kuboYml,
+	"ops-files/add-http-proxy.yml": opsFilesAddHttpProxyYml,
+	"ops-files/add-https-proxy.yml": opsFilesAddHttpsProxyYml,
+	"ops-files/add-no-proxy.yml": opsFilesAddNoProxyYml,
+	"ops-files/aws-cloud-provider.yml": opsFilesAwsCloudProviderYml,
+	"ops-files/aws-lb-cloud-config.yml": opsFilesAwsLbCloudConfigYml,
+	"ops-files/aws-lb.yml": opsFilesAwsLbYml,
+	"ops-files/cf-routing.yml": opsFilesCfRoutingYml,
+	"ops-files/gcp-cloud-provider.yml": opsFilesGcpCloudProviderYml,
 	"ops-files/k8s_haproxy_static_ips_vsphere.yml": opsFilesK8s_haproxy_static_ips_vsphereYml,
-	"ops-files/load_balancer_target_pools.yml":     opsFilesLoad_balancer_target_poolsYml,
-	"ops-files/master-haproxy-openstack.yml":       opsFilesMasterHaproxyOpenstackYml,
-	"ops-files/master-haproxy-vsphere.yml":         opsFilesMasterHaproxyVsphereYml,
-	"ops-files/remove-haproxy.yml":                 opsFilesRemoveHaproxyYml,
-	"ops-files/vsphere-cloud-provider.yml":         opsFilesVsphereCloudProviderYml,
-	"ops-files/worker-haproxy-openstack.yml":       opsFilesWorkerHaproxyOpenstackYml,
-	"ops-files/worker-haproxy-vsphere.yml":         opsFilesWorkerHaproxyVsphereYml,
-	"ops-files/worker-haproxy.yml":                 opsFilesWorkerHaproxyYml,
+	"ops-files/load_balancer_target_pools.yml": opsFilesLoad_balancer_target_poolsYml,
+	"ops-files/master-haproxy-openstack.yml": opsFilesMasterHaproxyOpenstackYml,
+	"ops-files/master-haproxy-vsphere.yml": opsFilesMasterHaproxyVsphereYml,
+	"ops-files/remove-haproxy.yml": opsFilesRemoveHaproxyYml,
+	"ops-files/vsphere-cloud-provider.yml": opsFilesVsphereCloudProviderYml,
+	"ops-files/worker-haproxy-openstack.yml": opsFilesWorkerHaproxyOpenstackYml,
+	"ops-files/worker-haproxy-vsphere.yml": opsFilesWorkerHaproxyVsphereYml,
+	"ops-files/worker-haproxy.yml": opsFilesWorkerHaproxyYml,
 }
 
 // AssetDir returns the file names below a certain
@@ -556,27 +556,26 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
-
 var _bintree = &bintree{nil, map[string]*bintree{
 	"kubo.yml": &bintree{kuboYml, map[string]*bintree{}},
 	"ops-files": &bintree{nil, map[string]*bintree{
-		"add-http-proxy.yml":                 &bintree{opsFilesAddHttpProxyYml, map[string]*bintree{}},
-		"add-https-proxy.yml":                &bintree{opsFilesAddHttpsProxyYml, map[string]*bintree{}},
-		"add-no-proxy.yml":                   &bintree{opsFilesAddNoProxyYml, map[string]*bintree{}},
-		"aws-cloud-provider.yml":             &bintree{opsFilesAwsCloudProviderYml, map[string]*bintree{}},
-		"aws-lb-cloud-config.yml":            &bintree{opsFilesAwsLbCloudConfigYml, map[string]*bintree{}},
-		"aws-lb.yml":                         &bintree{opsFilesAwsLbYml, map[string]*bintree{}},
-		"cf-routing.yml":                     &bintree{opsFilesCfRoutingYml, map[string]*bintree{}},
-		"gcp-cloud-provider.yml":             &bintree{opsFilesGcpCloudProviderYml, map[string]*bintree{}},
+		"add-http-proxy.yml": &bintree{opsFilesAddHttpProxyYml, map[string]*bintree{}},
+		"add-https-proxy.yml": &bintree{opsFilesAddHttpsProxyYml, map[string]*bintree{}},
+		"add-no-proxy.yml": &bintree{opsFilesAddNoProxyYml, map[string]*bintree{}},
+		"aws-cloud-provider.yml": &bintree{opsFilesAwsCloudProviderYml, map[string]*bintree{}},
+		"aws-lb-cloud-config.yml": &bintree{opsFilesAwsLbCloudConfigYml, map[string]*bintree{}},
+		"aws-lb.yml": &bintree{opsFilesAwsLbYml, map[string]*bintree{}},
+		"cf-routing.yml": &bintree{opsFilesCfRoutingYml, map[string]*bintree{}},
+		"gcp-cloud-provider.yml": &bintree{opsFilesGcpCloudProviderYml, map[string]*bintree{}},
 		"k8s_haproxy_static_ips_vsphere.yml": &bintree{opsFilesK8s_haproxy_static_ips_vsphereYml, map[string]*bintree{}},
-		"load_balancer_target_pools.yml":     &bintree{opsFilesLoad_balancer_target_poolsYml, map[string]*bintree{}},
-		"master-haproxy-openstack.yml":       &bintree{opsFilesMasterHaproxyOpenstackYml, map[string]*bintree{}},
-		"master-haproxy-vsphere.yml":         &bintree{opsFilesMasterHaproxyVsphereYml, map[string]*bintree{}},
-		"remove-haproxy.yml":                 &bintree{opsFilesRemoveHaproxyYml, map[string]*bintree{}},
-		"vsphere-cloud-provider.yml":         &bintree{opsFilesVsphereCloudProviderYml, map[string]*bintree{}},
-		"worker-haproxy-openstack.yml":       &bintree{opsFilesWorkerHaproxyOpenstackYml, map[string]*bintree{}},
-		"worker-haproxy-vsphere.yml":         &bintree{opsFilesWorkerHaproxyVsphereYml, map[string]*bintree{}},
-		"worker-haproxy.yml":                 &bintree{opsFilesWorkerHaproxyYml, map[string]*bintree{}},
+		"load_balancer_target_pools.yml": &bintree{opsFilesLoad_balancer_target_poolsYml, map[string]*bintree{}},
+		"master-haproxy-openstack.yml": &bintree{opsFilesMasterHaproxyOpenstackYml, map[string]*bintree{}},
+		"master-haproxy-vsphere.yml": &bintree{opsFilesMasterHaproxyVsphereYml, map[string]*bintree{}},
+		"remove-haproxy.yml": &bintree{opsFilesRemoveHaproxyYml, map[string]*bintree{}},
+		"vsphere-cloud-provider.yml": &bintree{opsFilesVsphereCloudProviderYml, map[string]*bintree{}},
+		"worker-haproxy-openstack.yml": &bintree{opsFilesWorkerHaproxyOpenstackYml, map[string]*bintree{}},
+		"worker-haproxy-vsphere.yml": &bintree{opsFilesWorkerHaproxyVsphereYml, map[string]*bintree{}},
+		"worker-haproxy.yml": &bintree{opsFilesWorkerHaproxyYml, map[string]*bintree{}},
 	}},
 }}
 
@@ -626,3 +625,4 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
+

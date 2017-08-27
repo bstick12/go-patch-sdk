@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/bstick12/go-patch-sdk/adapter"
-	"github.com/pivotal-cf/on-demand-services-sdk/serviceadapter"
 	"log"
 	"os"
+
+	"github.com/bstick12/go-patch-sdk/adapter"
+	"github.com/pivotal-cf/on-demand-services-sdk/serviceadapter"
 )
 
 func main() {
@@ -13,6 +14,7 @@ func main() {
 
 	manifestGenerator := &adapter.ManifestGenerator{
 		StderrLogger: stderrLogger,
+		AssetRetriever: adapter.NewAssertRetriever(),
 	}
 
 	binder := &adapter.Binder{}
